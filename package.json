@@ -4,11 +4,11 @@
   "description": "A mini blog app to demonstrate auth with social login",
   "main": "app.js",
   "scripts": {
-    "build": "babel server.js --out-dir build",
+    "build": "babel src/app.js --out-dir build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node ./build/app.js",
-    "start:dev": "nodemon --exec babel-node ./backend/app",
-    "migrate": "babel-node ./backend/database/migrations/createTables"
+    "start:dev": "babel-watch ./src/app",
+    "migrate": "babel-node ./src/database/createTables"
   },
   "author": "Akerele Babatunde",
   "license": "ISC",
@@ -20,14 +20,17 @@
     "pg": "^8.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.2",
-    "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
   }
 }

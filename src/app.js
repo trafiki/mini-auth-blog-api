@@ -1,4 +1,5 @@
 import express from 'express';
+import userRouter from './routes/users';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -7,6 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true,
 }));
+
+app.use('/api/v1/auth', userRouter);
 
 app.use('/', (req, res) => res.status(200).send({
   message: 'Welcome to mini auth blog app',

@@ -52,60 +52,60 @@ class Users {
     }
   }
 
-//   /**
-//    * Login User Account
-//    * User can login
-//    * @static
-//    * @param {object} req - The request object
-//    * @param {object} res - The response object
-//    * @return {object} - JSON representing success or error message
-//    * @memberof Users
-//    */
-//   static async login(req, res) {
-//     const { email } = req.body;
-//     const value = [email];
-//     try {
-//       const { rows } = await pool.query(findEmail, value);
-//       if (rows[0]) {
-//         const validPassword = Helper.validPassword(rows[0].password, req.body.password);
-//         if (validPassword) {
-//           const {
-//             id,
-//             username,
-//             first_name,
-//             last_name,
-//             job_role,
-//           } = rows[0];
-//           const token = Helper.generateToken({
-//             id,
-//             username,
-//             first_name,
-//             last_name,
-//             email,
-//             job_role,
-//           });
-//           return res.status(200).json({
-//             status: 'success',
-//             data: {
-//               username,
-//               message: 'Login successful',
-//               token,
-//               id,
-//             },
-//           });
-//         }
-//         return res.status(401).json({
-//           status: 'unauthorized',
-//           error: 'Either email or passowrd is incorrect',
-//         });
-//       }
-//     } catch (error) {
-//       res.status(500).json({
-//         status: 500,
-//         error: error.message,
-//       });
-//     }
-//   }
+  /**
+   * Login User Account
+   * User can login
+   * @static
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @return {object} - JSON representing success or error message
+   * @memberof Users
+   */
+  static async login(req, res) {
+    const { email } = req.body;
+    const value = [email];
+    try {
+      const { rows } = await pool.query(findEmail, value);
+      if (rows[0]) {
+        const validPassword = Helper.verifyPassword(rows[0].password, req.body.password);
+        if (validPassword) {
+          const {
+            id,
+            username,
+            first_name,
+            last_name,
+            job_role,
+          } = rows[0];
+          const token = Helper.generateToken({
+            id,
+            username,
+            first_name,
+            last_name,
+            email,
+            job_role,
+          });
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              username,
+              message: 'Login successful',
+              token,
+              id,
+            },
+          });
+        }
+        return res.status(401).json({
+          status: 'unauthorized',
+          error: 'Either email or passowrd is incorrect',
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
 export default Users;

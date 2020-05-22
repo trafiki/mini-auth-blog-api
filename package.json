@@ -10,6 +10,10 @@
     "start:dev": "babel-watch ./src/app",
     "migrate": "babel-node ./src/database/createTables"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trafiki/mini-auth-blog-api.git"
+  },
   "author": "Akerele Babatunde",
   "license": "ISC",
   "dependencies": {

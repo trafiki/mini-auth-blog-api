@@ -12,7 +12,7 @@ class Articles {
      * @static
      * @param {object} req - The request object
      * @param {object} res - The response object
-     * @return {object} JSON representing success message
+     * @return {object} JSON representing success or error message
      * @memberof Articles
      */
   static async createArticles(req, res) {
